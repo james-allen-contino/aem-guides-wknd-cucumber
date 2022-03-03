@@ -17,6 +17,7 @@ import org.junit.runner.RunWith;
         },
         features = { "classpath:features" }, // location of feature files
         glue = { "com.aem.wknd.bdd.pages" }) // location of step
+
 // implementation
 
 public class CucumberTest {
