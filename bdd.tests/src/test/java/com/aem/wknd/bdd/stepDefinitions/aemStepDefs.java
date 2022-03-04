@@ -11,28 +11,33 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import pageObjects.LoginPage;
+import pageObjects.OffersPage;
+import utils.TestContextSetup;
 
 import java.time.Duration;
 
 public class aemStepDefs {
-    public WebDriver driver;
+    private TestContextSetup testContextSetup;
+    private LoginPage loginPage;
+
+    public aemStepDefs(TestContextSetup testContextSetup) {
+        this.testContextSetup = testContextSetup;
+        this.loginPage = testContextSetup.pageObjectManager.getLoginPage();
+    }
 
     @Given("user navigates to login page")
     public void userNavigatesToLoginPage() {
-        System.setProperty("webdriver.chrome.driver","/usr/local/bin/chromedriver");
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--headless");
-        driver = new ChromeDriver(options);
-        driver.get("http://localhost:4502");
+        Assert.assertNotNull(loginPage);
     }
 
     @When("user logs in as admin")
     public void userLogsInAsAdmin() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("username")));
-        driver.findElement(By.id("username")).sendKeys("admin");
-        driver.findElement(By.id("password")).sendKeys("admin");
-        driver.findElement(By.id("submit-button")).click();
+//        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+//        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("username")));
+        loginPage.enterPassword("admin");
+        loginPage.enterUsername("admin");
+        loginPage.submitCreds();
     }
 
     @Then("user sees admin landing page")

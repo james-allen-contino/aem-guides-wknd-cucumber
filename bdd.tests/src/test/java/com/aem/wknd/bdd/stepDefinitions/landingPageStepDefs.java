@@ -22,7 +22,7 @@ public class landingPageStepDefs {
         System.setProperty("webdriver.chrome.driver","/usr/local/bin/chromedriver");
         options = new ChromeOptions();
         options.addArguments("--headless");
-        testContextSetup.driver = new ChromeDriver(options);
+//        testContextSetup.driver = new ChromeDriver(options);
         testContextSetup.driver.get("https://rahulshettyacademy.com/seleniumPractise/#/");
     }
 

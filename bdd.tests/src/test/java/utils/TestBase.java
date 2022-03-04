@@ -14,7 +14,8 @@ public class TestBase {
             options = new ChromeOptions();
             options.addArguments("--headless");
             driver = new ChromeDriver(options);
-            driver.get("https://rahulshettyacademy.com/seleniumPractise/#/");
+//            driver.get("https://rahulshettyacademy.com/seleniumPractise/#/");
+            driver.get("http://localhost:4502");
         }
         return driver;
     }
